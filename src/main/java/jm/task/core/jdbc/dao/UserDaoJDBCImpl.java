@@ -27,6 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Statement statement = CONNECTION.createStatement();) {
             statement.executeUpdate(sql);
+            CONNECTION.commit();
         } catch (SQLException e) {
             try {
                 CONNECTION.rollback();
@@ -41,6 +42,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Statement statement = CONNECTION.createStatement();) {
             statement.executeUpdate(sql);
+            CONNECTION.commit();
         } catch (SQLException e) {
             try {
                 CONNECTION.rollback();
@@ -59,6 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setString(3, String.valueOf(age));
             preparedStatement.executeUpdate();
+            CONNECTION.commit();
         } catch (SQLException e) {
             try {
                 CONNECTION.rollback();
@@ -76,6 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
             preparedStatement.setLong(1, id);
             preparedStatement.executeQuery();
+            CONNECTION.commit();
         } catch (SQLException e) {
             try {
                 CONNECTION.rollback();
@@ -110,8 +114,9 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         String sql = "TRUNCATE TABLE users;";
 
-        try (PreparedStatement preparedStatement = CONNECTION.prepareStatement(sql);) {
-            preparedStatement.executeQuery();
+        try (Statement statement = CONNECTION.createStatement();) {
+            statement.executeUpdate(sql);
+            CONNECTION.commit();
         } catch (SQLException e) {
             try {
                 CONNECTION.rollback();
