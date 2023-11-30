@@ -14,6 +14,7 @@ public class Util {
         try {
             connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             connection.setAutoCommit(false);
+            System.out.println("Подключение к БД прошло успешно.");
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Ошибка подключения к БД.");

@@ -10,13 +10,9 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private static final UserDao UDB = new UserDaoJDBCImpl();
-    private static final UserDao UDD = new UserDaoJDBCImpl();
-    public void createUsersTable() {
-        try {
-            UDB.createUsersTable();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+    public void createUsersTable() throws SQLException {
+        UDB.createUsersTable();
     }
 
     public void dropUsersTable() {
@@ -34,6 +30,7 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return UDB.getAllUsers();
     }
+
     public void cleanUsersTable() {
         UDB.cleanUsersTable();
     }
