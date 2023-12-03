@@ -70,9 +70,9 @@ public class UserServiceTest {
     @Test
     public void getAllUsers() {
         try {
-            userService.dropUsersTable();
-            userService.createUsersTable();
-            userService.saveUser(testName, testLastName, testAge);
+            //userService.dropUsersTable();
+            //userService.createUsersTable();
+            //userService.saveUser(testName, testLastName, testAge);
             List<User> userList = userService.getAllUsers();
 
             if (userList.size() != 1) {
